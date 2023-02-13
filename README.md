@@ -19,7 +19,11 @@ pip install pyserial
 ###For Slower but more accurate also install
 sudo apt-get -y install iw
 ```
-
+When using the slow version the python program will require a sudo since iw requires it. My WIFI card is wlp5s0 but yours may be different.<br/>
+Use this command to find your access point and replace [wlp5s0](https://github.com/BrendanBetterman/RSSI-Camera/blob/ea77a924072423a8c0ed69be213c98cc22420798/RSSI/GetRSSI.py#L13)
+```
+iwconfig
+```
 ------------
 ## Parts used<br />
 
