@@ -101,20 +101,29 @@ void loop()
     if (incomingByte == 'U') {
       motors[0] = true;
       motors[2] = false;
+      motors[1] = false;
+      motors[3] = false;
     }else if(incomingByte == 'D'){
       motors[0] = false;
       motors[2] = true;
+      motors[1] = false;
+      motors[3] = false;
     }else if(incomingByte == 'R'){
       motors[1] = true;
       motors[3] = false;
+      motors[0] = false;
+      motors[2] = false;
     }else if(incomingByte == 'L'){
       motors[1] = false;
       motors[3] = true;
+      motors[0] = false;
+      motors[2] = false;
     }
-    Serial.write("D");
+    
     for (int i=0; i<5; i++){
       driveStep(motors);
     }
+    Serial.print("D");
     incomingByte = 0;
     
   }
