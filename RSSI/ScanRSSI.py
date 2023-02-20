@@ -1,6 +1,11 @@
 import serial
 import subprocess
 import time
+from PIL import Image
+import numpy as np
+def imageFromArray(array):
+    image = Image.fromarray(np.uint8(array)).convert('RGB')
+    image.save("wifi.png")
 def avgList(rssi):
     out = 0
     for i in rssi:
@@ -36,6 +41,10 @@ def getRssi():
     return avgList(signal)
 def main():
     ser = serial.Serial('/dev/ttyUSB0',9600,timeout=1)
+    #image
+    array = np.arange(0, 1024, 1, np.uint8)
+    array = np.reshape(array, (32, 32))
+
     output = []
     start = time.time()
     for x in range(32):
