@@ -1,8 +1,9 @@
 # RSSI-Camera
 Using stepper motors to move an antenna to get the RSSI in different areas generating an image. This uses a Wi-Fi card so 2.5ghz and 5ghz signals are detected.
-This currently only works on linux machines and was only tested on Arch Linux. 
-
-
+This currently only works on linux machines and was only tested on Arch Linux. <br>
+<p align="center">
+  <img src="https://github.com/BrendanBetterman/RSSI-Camera/blob/main/ImageProcessing/test.png" width="255" title="First Image"  style="image-rendering: crisp-edges;" >
+</p>
 -----------
 ## Libraries Needed<br />
 Arch Linux<br />
