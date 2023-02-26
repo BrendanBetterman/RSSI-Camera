@@ -4,6 +4,7 @@ This currently only works on linux machines and was only tested on Arch Linux. <
 <p align="center">
   <img src="https://github.com/BrendanBetterman/RSSI-Camera/blob/main/ImageProcessing/test.png" width="255" title="First Image"  style="image-rendering: crisp-edges;" >
 </p>
+
 -----------
 ## Libraries Needed<br />
 Arch Linux<br />
