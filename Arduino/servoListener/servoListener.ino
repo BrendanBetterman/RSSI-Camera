@@ -2,7 +2,7 @@
 Servo servoX;
 Servo servoY;
 int speed =1;
-int posX =0 ,posY = 0;
+int posX =32 ,posY = 32;
 int inByte;
 void setup() 
 { 
@@ -41,21 +41,22 @@ void loop(){
                     speed -=1;
                 }
                 break;
+           
             default:
                 break;
         }
         if (posY <0){
-            posY =0;
-        }else if(posY >180){
-            posY = 180;
-        }
-        if (posX < 0){
-            posX =0;
-        }else if(posX >180){
-            posX = 180;
-        }
-        servoX.write(posX);
-        servoY.write(posY);
+                    posY =0;
+                }else if(posY >180){
+                    posY = 180;
+                }
+                if (posX < 0){
+                    posX =0;
+                }else if(posX >180){
+                    posX = 180;
+                }
+                servoX.write(posX);
+                servoY.write(posY);
         Serial.print("C");//complete
         inByte = 0;
     }

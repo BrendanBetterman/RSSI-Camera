@@ -41,12 +41,17 @@ def getRssi():
         rate.append(cols[signalloc-2])
     return avgList(signal)
 def main():
+    fileName = 'wifi-' + str(time.strftime('%Y-%m-%d-%H:%M:%S')) + '.csv'
+    print(fileName)
     ser = serial.Serial('/dev/ttyUSB0',9600,timeout=1)
     output = []
+    size = 16
+    percentage = 0
+    turn = 100/(size*size) 
     start = time.time()
-    for x in range(16):
+    for x in range(size):
         tmp = []
-        for y in range(16):
+        for y in range(size):
             if( x%2 ==1):
                 ser.write(b'D')
             else:
@@ -55,19 +60,24 @@ def main():
             #tmp.append(getSlow())
             time.sleep(2)
             ser.read()
+            percentage += turn
+            elapsedTime = (time.time() - start)
+            estimateTime = elapsedTime/(percentage/100) 
+            remaining = estimateTime- elapsedTime
+            print(str(round(percentage,2)) + "%      " + str(round(remaining,2)) + "Seconds", end='\r')
         ser.write(b'R')
         output.append(tmp)
         ser.read()
     end = time.time()
-    print(output)
-    fileName = 'wifi' + str(time.time()) + '.csv'
-    with open('wifi16.csv','a') as f_object:
+    #print(output)
+    print("\n")
+    with open(fileName,'a') as f_object:
         writer_object = writer(f_object)
         for i in output:
             writer_object.writerow(i)
         f_object.close()
     print(end-start)
-    for x in range(16):
+    for x in range(size):
         ser.write(b'L')
         ser.read()
 main()
