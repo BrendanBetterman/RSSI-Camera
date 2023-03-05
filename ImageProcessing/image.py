@@ -18,4 +18,7 @@ def csvToImage(name):
                      out_image[x,y]=pixel
        out = Image.fromarray(out_image.astype(np.uint8))
        out.save('../../../../../srv/http/rssi/'+name + '.png')
+       
+       with open('../../../../../srv/http/rssi/'+name + '.txt','w') as f:
+              f.write(input())
 #csvToImage()

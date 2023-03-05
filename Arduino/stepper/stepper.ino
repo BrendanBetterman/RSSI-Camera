@@ -120,7 +120,7 @@ void loop()
       motors[2] = false;
     }
     
-    for (int i=0; i<16; i++){
+    for (int i=0; i<2; i++){
       driveStep(motors);
     }
     Serial.print("D");

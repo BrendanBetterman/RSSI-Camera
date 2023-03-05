@@ -6,7 +6,12 @@ import image
 import subprocess
 import time
 from csv import writer
-
+def bestList(rssi):
+    best = -120
+    for i in rssi:
+        if(int(i) > best):
+            best = int(i)
+    return -1 * best
 def avgList(rssi):
     out = 0
     for i in rssi:
@@ -21,12 +26,16 @@ def getSlow():
     freq = []
     signal = []
     #ssid = []
-    for i in range(0,len(outputList),2):
-        freq.append(int(outputList[i].split(" ")[1]))
-        if freq[len(freq)-1] <=5000.0: 
-            signal.append(float(outputList[i+1].split(" ")[1]))
-        
+    try:
+        for i in range(0,len(outputList),2):
+            freq.append(int(outputList[i].split(" ")[1]))
+            if freq[len(freq)-1] <=5000.0: 
+                signal.append(float(outputList[i+1].split(" ")[1]))
+    except:
+        return getSlow()
         #ssid.append(outputList[i+2])
+    #return 
+    #print(bestList(signal))
     return avgList(signal)
 def getRssi():
     output = subprocess.getoutput("nmcli dev wifi")
@@ -44,10 +53,12 @@ def getRssi():
                 break
         signal.append(cols[signalloc])
         rate.append(cols[signalloc-2])
-    return avgList(signal)
-
+    print(bestList(signal))
+    #return avgList(signal)
+    return bestList(signal)
 def main():
-    fileName = 'wifi-' + str(time.strftime('%Y-%m-%d-%H:%M:%S')) 
+    getSlow()
+    fileName = 'wifi-' + str(time.strftime('%Y-%m-%d-%H_%M_%S')) 
     print(fileName)
     ser = serial.Serial('/dev/ttyUSB0',9600,timeout=1)
     output = []
@@ -62,9 +73,9 @@ def main():
                 ser.write(b'D')
             else:
                 ser.write(b'U')
-            tmp.append(getRssi())
-            #tmp.append(getSlow())
-            time.sleep(2)
+            #tmp.append(getRssi())
+            tmp.append(getSlow())
+            #time.sleep(2)
             ser.read()
             percentage += turn
             elapsedTime = (time.time() - start)
