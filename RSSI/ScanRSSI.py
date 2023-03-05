@@ -1,7 +1,12 @@
 import serial
+import sys
+sys.path.insert(1,'../ImageProcessing')
+import image
+
 import subprocess
 import time
 from csv import writer
+
 def avgList(rssi):
     out = 0
     for i in rssi:
@@ -40,8 +45,9 @@ def getRssi():
         signal.append(cols[signalloc])
         rate.append(cols[signalloc-2])
     return avgList(signal)
+
 def main():
-    fileName = 'wifi-' + str(time.strftime('%Y-%m-%d-%H:%M:%S')) + '.csv'
+    fileName = 'wifi-' + str(time.strftime('%Y-%m-%d-%H:%M:%S')) 
     print(fileName)
     ser = serial.Serial('/dev/ttyUSB0',9600,timeout=1)
     output = []
@@ -71,11 +77,12 @@ def main():
     end = time.time()
     #print(output)
     print("\n")
-    with open(fileName,'a') as f_object:
+    with open(fileName+ '.csv','a') as f_object:
         writer_object = writer(f_object)
         for i in output:
             writer_object.writerow(i)
         f_object.close()
+    image.csvToImage(fileName)
     print(end-start)
     for x in range(size):
         ser.write(b'L')
