@@ -17,8 +17,9 @@ def csvToImage(name):
                      pixel = [red,green,0]
                      out_image[x,y]=pixel
        out = Image.fromarray(out_image.astype(np.uint8))
-       out.save('../../../../../srv/http/rssi/'+name + '.png')
+       out.save(name + '.png')
+       #out.save('../../../../../srv/http/rssi/'+name + '.png')
        
-       with open('../../../../../srv/http/rssi/'+name + '.txt','w') as f:
-              f.write(input())
-#csvToImage()
+       #with open('../../../../../srv/http/rssi/'+name + '.txt','w') as f:
+        #      f.write(input())
+csvToImage("wifi-2023-03-08-12_34_57")

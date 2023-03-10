@@ -17,37 +17,6 @@ def avgList(rssi):
     for i in rssi:
         out += int(i)
     return out/len(rssi)
-def getChannels():
-    try:
-        interface = "wlp4s0"  # Replace with your WiFi interface name
-        output = subprocess.check_output(["sudo", "iwlist", interface, "scan"]).decode()
-        rssi_values = {}
-        current_channel = None
-        isFiveG = False
-        for line in output.split("\n"):
-            line = line.strip()
-            if line.startswith("Channel"):
-                current_channel = int(line.split(":")[1])
-            elif line.startswith("Frequency:"):
-                isFiveG = int(line.split(":")[1].split(".")[0]) == 2
-            elif line.startswith("Quality="):
-                if isFiveG:
-                    rssi = int(line.split("=")[2].split()[0])
-                    rssi_values[current_channel] = rssi
-        return rssi_values
-    except:
-        return getChannels()
-def getAvgChannels(channeldata):
-    output = 0
-    for channel,rssi in channeldata.items():
-        output += rssi
-    return output/len(channeldata)
-def getBestChannels(channeldata):
-    output = -120
-    for channel, rssi in channeldata.items():
-        if output < rssi:
-            output = rssi
-    return output
 def getSlow():
     output = subprocess.getoutput("iw wlp4s0 scan | grep '\\bsignal:\|\\bfreq:'")
     
@@ -105,8 +74,7 @@ def main():
             else:
                 ser.write(b'U')
             #tmp.append(getRssi())
-            #tmp.append(getSlow())
-            tmp.append(getBestChannels(getChannels()))
+            tmp.append(getSlow())
             #time.sleep(2)
             ser.read()
             percentage += turn
