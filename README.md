@@ -9,9 +9,10 @@ This currently only works on linux machines and was only tested on Arch Linux. <
 ## Libraries Needed<br />
 Arch Linux<br />
 ```
-pacman -S network-manager 
+sudo pacman -S networkmanager
+sudo pacman -S wireless_tools
 ###For Slower but more accurate also install
-pacman -S iw
+sudo pacman -S iw
 ```
 Linux
 ```
