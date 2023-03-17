@@ -7,6 +7,10 @@ This currently only works on linux machines and was only tested on Arch Linux. <
 
 -----------
 ## Libraries Needed<br />
+https://github.com/BrendanBetterman/aircrack-ng <br/>
+Custom aircrack-ng, this program makes a discrete result the orignal makes a continueous result. you will need to compile and install this.<br/>  
+
+
 Arch Linux<br />
 ```
 sudo pacman -S networkmanager
