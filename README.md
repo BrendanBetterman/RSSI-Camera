@@ -9,7 +9,7 @@ This currently only works on linux machines and was only tested on Arch Linux. <
 ## Libraries Needed<br />
 https://github.com/BrendanBetterman/aircrack-ng <br/>
 Custom aircrack-ng, this program makes a discrete result the orignal makes a continueous result. you will need to compile and install this.<br/>  
-
+[Research Paper](https://micsymposium.org/mics2023/wp-content/uploads/2023/03/MICS_2023_paper_3831.pdf)
 
 Arch Linux<br />
 ```
